@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    | Anställda
+{% endblock title %}
+    
+
+{% block content %}
+   <div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary my-2">
+            <a href="{% url 'information:staff_create'%}">Lägg till Anställd</a>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <form action="{% url 'information:staff_list' %}" class="mt-2" method="get">
+            {{form|crispy}}
+            <input type="submit" value="Sök" class="btn btn-warning">
+            <button class="btn btn-danger my-2">
+                <a href="{% url 'information:staff_list' %}"
+                class="text-decoration-none text-warning">Rensa</a>
+            </button>
+        </form>
+    </div>
+    <hr>
+
+    <section class="staff-table">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Anställd</th>
+                            <th>Email</th>
+                            <th>Telefon</th>
+                            <th>ID 06</th>
+                            <th class="text-center">Ändra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for staff in staffs %}
+                            <tr>
+                                <td>{{staff.staff_firstname}}
+                                    {{staff.staff_lastname}}
+                                </td>
+                                <td>{{staff.staff_email}}</td>
+                                <td>{{staff.staff_phonenumber}}</td>
+                                <td>
+                                    {% if staff.staff_id06 == None %}
+                                        -
+                                        {% else %}
+                                        {{staff.staff_id06}}</td>
+                                    {% endif %}
+                                <td class="text-center"><a href="
+                                    {% url 'information:staff_edit' staff.id%}">
+                                    👷🏼‍♂️</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th class="fst-italic fw-bold">
+                                Anställda: {{staff_count}}
+                            </th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
+    

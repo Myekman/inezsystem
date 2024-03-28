@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    Enhetslista
+{% endblock title %}
+    
+
+
+{% block content %}
+    
+<div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary">
+            <a href="{% url 'information:unit_create' %}">Ny Enhet</a>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+
+        <form action="{% url 'information:unit_list' %}" method="get" class="mt-2">
+            {{form|crispy}}
+            <input type="submit" value="Sök" class="btn btn-warning">
+            <button class="btn btn-danger">
+                <a class="text-decoration-none text-warning"
+                href="{% url 'information:unit_list' %}">Rensa</a>
+            </button>
+        </form>
+    </div>
+    <hr>
+    <section class="unit-table">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Enhetsnamn</th>
+                            <th class="text-end fst-italic">Redigera</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for unit in units %}
+                            <tr>
+                                <td>{{unit.unit}}</td>
+                                <td class="text-end">
+                                    <a href="
+                                    {% url 'information:unit_edit' unit.id%}">
+                                🎪</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <th>ANTAL: {{unit_count}}</th>
+                                <td></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+<br><br>
+    <section class="unit tabs">
+        <h1>Test</h1>
+        <ul class="nav nav-tabs">
+            
+            {% for unit in units %}
+                <li class="nav-item">
+                    <a href="" class="nav-link">{{unit.unit}}</a>
+                </li>
+            {% endfor %}
+                
+        </ul>
+    </section>
+
+
+</div>
+
+
+{% endblock content %}
+    

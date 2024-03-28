@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    UE Företagslista
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary">
+            <a href="{% url 'information:ue_company_create' %}">Nytt UE Företag</a>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <form action="{% url 'information:ue_company_list' %}" method="get">
+            {{form|crispy}}
+            <input type="submit" value="Sök" class="btn btn-warning">
+            <button class="btn btn-danger">
+                <a class="text-decoration-none text-warning"
+                href="{% url 'information:ue_company_list' %}">
+                Rensa</a>
+            </button>
+        </form>
+    </div>
+        <hr>
+        <section class="ue-company-table">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Företagsnamn</th>
+                                <th>Företagsmail</th>
+                                <th>Org Nummer</th>
+                                <th>UE Addres</th>
+                                <th>Stad</th>
+                                <th class="text-center">Redigera</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for ue in ue_company %}
+                                <tr>
+                                    <td>{{ue.sub_company}}</td>
+                                    <td>{{ue.sub_email}}</td>
+                                    <td>{{ue.sub_org_nr}}</td>
+                                    <td>{{ue.sub_address}}</td>
+                                    <td>{{ue.sub_city}}</td>
+                                    <td class="text-center">
+                                        <a href="
+                                        {% url 'information:ue_company_edit' ue.id%}">
+                                    ✈️</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                                <tr>
+                                    <th>Antal: {{ue_count}}</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+</div>
+
+{% endblock content %}
+    
+    

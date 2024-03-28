@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-3">
+
+    
+    <div class="col-md-3">
+        <h4>Ställningar</h4>
+        <ul class="mt-1 list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'information:scaffold_create' %}">
+                    Skapa ställning
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'information:scaffold_list' %}">
+                    Ställningar
+                </a>
+            </li>
+        </ul>
+        <h5>Enheter</h5>
+        <ul class="mt-1 list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'information:unit_create' %}">
+                    Skapa Enhet
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'information:unit_list' %}">
+                    Enhetslista
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Personal</h4>
+        <ul class="mt-1 list-unstyled">
+            <li class="mb-2">
+         <a href="{% url 'information:staff_list' %}">
+             Personallista
+         </a>
+     </li>
+     <li class="mb-2">
+         <a href="{% url 'information:staff_create' %}">
+             Skapa anställd
+         </a>
+     </li>
+    </ul>
+    <h5>UE</h5>
+        <ul class="mt-1 list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'information:ue_company_list' %}">
+                    UE Företag
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'information:ue_user_list' %}">
+                    Underentreprenörer
+                </a>
+            </li>
+        </ul>
+    <h5>Beställare</h5>
+    <ul class="list-unstyled">
+        <li class="mb-2">
+            <a href="{% url 'information:companyworker_list' %}">
+                Beställare
+            </a>
+        </li>
+        <li class="mb-2">
+            <a href="{% url 'information:companyworker_create' %}">
+                Skapa Beställare
+            </a>
+        </li>
+    </ul>
+    </div>
+    <div class="col-md-3">
+        <h4>Företag</h4>
+        <ul class="mt-1 list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'information:company_list'%}">
+                    Företagslista
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'information:company_create' %}">
+                    Skapa företag
+                </a>
+            </li>
+        </ul>
+        <h5>Fordon</h5>
+        <ul class="mt list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'information:car_list'%}">
+                    Fordonslista
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'information:car_create'%}">
+                    Lägg till Fordon
+                </a>
+            </li>
+        </ul>
+        <h5>Fordons typ</h5>
+        <ul class="mt list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'information:car_type_list' %}">
+                    Fordonstyp lista
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'information:car_type_create'%}">
+                    Lägg till Fordonstyp
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock content %}
+

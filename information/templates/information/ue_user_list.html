@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    UE Användarlista
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary">
+            <a href="{% url 'information:ue_user_create' %}">Ny UE Användare</a>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <form action="{% url 'information:ue_user_list' %}" method="get">
+            <div class="form-row d-flex">
+                {{form|crispy}}
+            </div>
+            <input type="submit" value="Sök" class="btn btn-warning">
+            <button class="btn btn-danger">
+                <a class="text-decoration-none text-warning"
+                href="{% url 'information:ue_user_list' %}">
+                Rensa</a>
+            </button>
+        </form>
+    </div>
+        <hr>
+    <section class="ue-user-table">
+        <h2 class="fw-bold">HELA TABELLEN ÄR KLICKBAR!</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <td>Namn</td>
+                            <td>Mail</td>
+                            <td>ID06</td>
+                            <td>Företag</td>
+                            <td>Enheter</td>
+                            <td class="text-center">Redigera</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for ue in subcontractor %}
+                            <tr style="cursor: pointer;" onclick="window.location.href='{% url 'information:ue_user_edit' ue.id %}'"> 
+                                <td>
+                                    {{ue.sub_firstname}} {{ue.sub_lastname}}
+                                </td>
+                                <td>{{ue.sub_email}}</td>
+                                <td>{{ue.sub_id06}}</td>
+                                <td>{{ue.sub_company}}</td>
+                                <td></td>
+                                <td class="text-center">
+                                    <a href="
+                                    {% url 'information:ue_user_edit' ue.id%}">
+                                    🗿</a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th>Antal: {{ue_user_count}}</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}
+
+    

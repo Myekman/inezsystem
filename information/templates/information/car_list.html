@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    Billista
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="container d-flex justify-content-end">
+            <div class="btn btn-outline-secondary">
+                <a href="{% url 'information:car_create' %}">Ny Bil</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            
+            <form action="{% url 'information:car_list' %}" method="get" class="mt-2">
+                <div class="form-row d-flex">
+                    {{form|crispy}}
+                </div>
+                <div class="mt-4">
+                    <input type="submit" value="Sök" class="btn btn-warning">
+                    <button class="btn btn-danger">
+                        <a href="{% url 'information:car_list'%}" 
+                        class="text-decoration-non text-warning">Rensa</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        
+        <section class="car-table-active">
+            <h3>Aktiva bilar</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reg Nummer</th>
+                                <th>Namn?</th>
+                                <th>Bil Typ</th>
+                                <th>Enhet</th>
+                                <th>Aktiv</th>
+                                <th class="text-center">Redigera</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for car in cars %}
+                            
+                            {% if car.car_active %}    
+                            <tr>
+                                
+                                <td>{{car.car_regnr}}</td>
+                                <td>{{car.car_name}}</td>
+                                <td>{{car.car_type_name}}</td>
+                                <td>{{car.unit}}</td>
+                                <td>✅</td>
+                                    <td class="text-center">
+                                        <a href="
+                                        {% url 'information:car_edit' car.id%}">
+                                        🏎️</a>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                                <tr>
+                                    <th>Antal: {{car_active_count}}</th>
+                                    <td><td><td><td><td></td></td></td></td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+<hr><hr>
+            <section class="car-table-not-active">
+                <h3 style="color: red;">Inaktiva bilar</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Reg Nummer</th>
+                                    <th>Namn?</th>
+                                    <th>Bil Typ</th>
+                                    <th>Enhet</th>
+                                    <th>Aktiv</th>
+                                    <th class="text-center">Redigera</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {% for car in cars %}
+                                
+                                {% if not car.car_active %}    
+                                <tr>
+                                    
+                                    <td>{{car.car_regnr}}</td>
+                                    <td>{{car.car_name}}</td>
+                                    <td>{{car.car_type_name}}</td>
+                                    <td>{{car.unit}}</td>
+                                    <td>⛔️</td>
+                                        <td class="text-center">
+                                            <a href="
+                                            {% url 'information:car_edit' car.id%}">
+                                            🏎️</a>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <tr>
+                                        <th>Antal: {{car_not_active_count}}</th>
+                                        <td><td><td><td><td></td></td></td></td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+        
+    </div>
+{% endblock content %}
+    
+    

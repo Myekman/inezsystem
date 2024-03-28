@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Fordondslista
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary">
+            <a href="{% url 'information:car_type_create' %}">Ny Fordonstyp</a>
+        </div>
+    </div>
+
+    
+    <section class="car-type-table">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                          <th>Fordons typ</th>
+                          <th class="text-end">Redigera</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for car in car_types %}
+                            <tr>
+                                <td>{{car.car_type_name}}</td>
+                                <td class="text-end">
+                                    <a href="
+                                    {% url 'information:car_type_edit' car.id%}">
+                                    🛞</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <th>ANTAL: {{car_count}}</th>
+                                <td></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+    
+{% endblock content %}

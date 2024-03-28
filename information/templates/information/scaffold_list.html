@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+<div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary">
+         <a href="{% url 'information:scaffold_create' %}">Skapa ny ställning</a>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <form class="mt-2" action="{% url 'information:scaffold_list' %}" method="get">
+            <div class="form-row d-flex">
+                {{form|crispy}}
+            </div>
+            <input type="submit" value="Sök" class="btn btn-warning">
+            <button class="btn btn-danger">
+                <a class="text-decoration-none text-warning" href="{% url 'information:scaffold_list' %}">Rensa</a>
+            </button>
+        </form>
+    </div>
+    <hr>
+    <section class="scaffold-table">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Ställ nr</th>
+                            <th class="">Enhet</th>
+                            <th class="text-center">Plats</th>
+                            <th class="text-center">Ställning För</th>
+                            <th class="text-center">Märkning</th>
+                            <th class="text-center">Inköpsorder nr</th>
+                            <th class="text-center">Kubik</th>
+                            <th class="text-center">Trapp meter</th>
+                            <th class="text-center">Dag skapad</th>
+                            <th class="text-center">Ändra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for scaffold in scaffolds %}
+                            <tr>
+                                <th class="text-center">
+                                    
+                                    {% if scaffold.scaffold_material %}
+                                        {{scaffold.scaffold_number}} 🛠️
+                                        {% else %}
+                                        {{scaffold.scaffold_number}}
+                                    {% endif %}
+                                        
+                                </th>
+                                <td>{{scaffold.unit}}</td>
+                                <td class="text-center">
+                                    {{scaffold.scaffold_location}}
+                                </td>
+                                <td class="text-center">
+                                    {{scaffold.scaffold_for}}
+                                </td>
+                                <td class="text-center">
+                                    {{scaffold.scaffold_marking}}
+                                </td>
+                                <td class="text-center">
+                                    {{scaffold.scaffold_po}}
+                                </td>
+                                <td class="text-center">
+                                    {{scaffold.scaffold_cubic}}
+                                </td>
+                                <td class="text-center">
+                                    {{scaffold.scaffold_stair}}
+                                </td>
+                                <td class="text-center">
+                                    {{scaffold.day_created|date:"Y-m-d"}}
+                                </td>
+                                <td class="text-center">
+                                    <a href="
+                                    {% url 'information:scaffold_edit' scaffold.id %}"
+                                    >✏️</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th class=" fst-italic text-center fw-bold">Antal:</th>
+                            <td class="fw-bold" >{{scaffold_count}}</td> 
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center fw-bold">{{cubic_sum}}</td>
+                            <td class="text-center fw-bold">{{stair_sum}}</td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}
+
+    

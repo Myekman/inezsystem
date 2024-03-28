@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Highcon AB
+    {% block title %}
+        
+    {% endblock title %}
+        </title>
+</head>
+<body>
+    
+    {% comment %} NAVBAR {% endcomment %}
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a href="{% url 'information:index'%}" class="navbar-brand">Startsida</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav">
+                        <li class="nav-item mx-3">
+                            <a href="#"
+                            aria-current="page"
+                            class="nav-link active">🛠️</a>
+                        </li>
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ställningar
+                            </a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'information:scaffold_list'%}" class="dropdown-item">Ställningslista</a></li>
+                                <li><a href="{% url 'information:scaffold_create'%}" class="dropdown-item">Skapa ställning</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Enheter
+                            </a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'information:unit_list'%}" class="dropdown-item">Enheter</a></li>
+                                <li><a href="{% url 'information:unit_create'%}" class="dropdown-item">Skapa Enhet</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Personal
+                            </a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'information:staff_list'%}" class="dropdown-item">Personallista</a></li>
+                                <li><a href="{% url 'information:staff_create'%}" class="dropdown-item">Skapa Anställd</a></li>
+                                <li><a href="{% url 'information:ue_user_list'%}" class="dropdown-item">UE Lista</a></li>
+                                <li><a href="{% url 'information:ue_user_create'%}" class="dropdown-item">Skapa UE</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Företag
+                            </a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'information:company_list'%}" class="dropdown-item">Företagslista</a></li>
+                                <li><a href="{% url 'information:company_create'%}" class="dropdown-item">Skapa företag</a></li>
+                                <li><a href="{% url 'information:ue_company_list'%}" class="dropdown-item">UE Lista</a></li>
+                                <li><a href="{% url 'information:ue_company_create'%}" class="dropdown-item">Skapa UE Företag</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Beställare
+                            </a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'information:companyworker_list'%}" class="dropdown-item">Beställare</a></li>
+                                <li><a href="{% url 'information:companyworker_create'%}" class="dropdown-item">Skapa Beställare</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Fordon
+                            </a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'information:car_list'%}" class="dropdown-item">Fordonslista</a></li>
+                                <li><a href="{% url 'information:car_create'%}" class="dropdown-item">Skapa Fordon</a></li>
+                                <li><a href="{% url 'information:car_type_list'%}" class="dropdown-item">Fordonstyp</a></li>
+                            </ul>
+                        </li>
+
+                     </ul>
+                  </div>
+            </div>
+        </nav>
+        <hr>
+
+
+
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+</body>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</html>

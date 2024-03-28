@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    Företagslista
+{% endblock title %}
+    
+{% block content %}
+    <div class="container">
+        <div class="container d-flex justify-content-end">
+            <div class="btn btn-outline-secondary">
+                <a href="{% url 'information:company_create' %}">Nytt Företag</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <form action="{% url 'information:company_list' %}" method="get" class="mt-2 form-row">
+                {{form|crispy}}
+                <input type="submit" value="Sök" class="btn btn-warning">
+                <button class="btn btn-danger">
+                    <a class="text-decoration-none text-warning"
+                    href="{% url 'information:company_list' %}">Rensa</a>
+                </button>
+            </form>
+        </div>
+        <hr>
+        <section class="company-table">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Företagsnamn</th>
+                                <th>Fakturaadress</th>
+                                <th>Org Nummer</th>
+                                <th>Telefon</th>
+                                <th>Stad</th>
+                                <th class="text-center">Ändra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for company in companies %}
+                                <tr>
+                                    <td>{{company.company_name}}</td>
+                                    <td>{{company.company_invoice_address}}</td>
+                                    <td>{{company.company_org_nr}}</td>
+                                    <td>{{company.company_phone_number}}</td>
+                                    <td>{{company.company_city}}</td>
+                                    <td class="text-center">
+                                        <a href="
+                                        {% url 'information:company_edit' company.id%}">
+                                    📚</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <th class="fst-italic fw-bold">
+                                    Företag: {{company_count}}
+                                </th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+{% endblock content %}
+    

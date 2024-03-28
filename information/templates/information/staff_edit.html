@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+<div class="container">
+    <h3>Redigera anställd: {{staff.staff_firstname}} {{staff.staff_lastname}}</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button class="btn btn-success" type="submit">
+                    Ändra anställd
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}
+    

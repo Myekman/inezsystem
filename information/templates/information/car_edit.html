@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    Redigera Bil
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h3>Redigera bil: {{car.car_regnr}} </h3>
+    <div class="col-md-3">
+        <form action="" method="post" class="my-4">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button class="btn btn-success" type="submit">
+                Uppdatera Bil
+            </button>
+        </form>
+    </div>
+</div>
+    
+{% endblock content %}

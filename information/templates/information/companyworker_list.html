@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    Beställarlista
+{% endblock title %}
+    
+
+{% block content %}
+<div class="container">
+    <div class="container d-flex justify-content-end">
+        <div class="btn btn-outline-secondary">
+            <a href="{% url 'information:companyworker_create' %}">Ny Beställare</a>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <form class="mt-2" action="{% url 'information:companyworker_list' %}" method="get">
+            <div class="form-row d-flex">
+                {{form|crispy}}
+            </div>
+            <input type="submit" value="Sök" class="btn btn-warning">
+            <button class="btn btn-danger">
+                <a href="{% url 'information:companyworker_list' %}" 
+                class="text-decoration-none text-warning">Rensa</a>
+            </button>
+        </form>
+    </div>
+    <hr>
+    <section class="companyworker-table">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Beställare</th>
+                            <th>Företag</th>
+                            <th>Mail</th>
+                            <th class="text-center">Redigera</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for worker in companyworkers %}
+                            <tr>
+                                <td>
+                                {{worker.worker_firstname}} {{worker.worker_lastname}}
+                                </td>
+                                <td>{{worker.worker_company}}</td>
+                                <td>{{worker.worker_email}}</td>
+                                <td class="text-center">
+                                    <a href="
+                                    {% url 'information:companyworker_edit' worker.id %}">
+                                👷🏼</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th class="fst-italic fw-bold">
+                                Beställare: {{worker_count}}
+                            </th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% endblock content %}
