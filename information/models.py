@@ -1,5 +1,5 @@
 from django.db import models
-from djmoney.models.fields import MoneyField
+# from djmoney.models.fields import MoneyField
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
@@ -82,10 +82,10 @@ class ScaffoldType(models.Model):
     the scaffold is not a price job.)
     """
     is_price = models.BooleanField(default=False)
-    work_price = MoneyField(max_digits=19, decimal_places=4, 
-                            default_currency='SEK')
-    work_rent = MoneyField(max_digits=19, decimal_places=4,
-                           default_currency='SEK')
+    # work_price = MoneyField(max_digits=19, decimal_places=4, 
+    #                         default_currency='SEK')
+    # work_rent = MoneyField(max_digits=19, decimal_places=4,
+    #                        default_currency='SEK')
     work_comment = models.CharField(max_length=300, default=None)
 
 def validate_positive_or_zero(value):
