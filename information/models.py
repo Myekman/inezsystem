@@ -23,7 +23,7 @@ class Company(models.Model):
     Model for companies that store information about it.
     """
     company_name = models.CharField(max_length=100,
-                                    verbose_name="Företagsnamn")
+                                    verbose_name="Företagsnamn nisse")
     company_invoice_address = models.CharField(max_length=300,
                                     verbose_name="Fakturaadress")
     company_org_nr = models.CharField(max_length=100,
